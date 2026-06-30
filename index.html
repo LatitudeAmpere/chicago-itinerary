@@ -6,7 +6,6 @@
 <title>Chicago Trip</title>
 
 <style>
-<style>
 :root {
   --bg: #f7f5f2;
   --card: #ffffff;
@@ -19,15 +18,14 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
   background: var(--bg);
   color: var(--text);
-  line-height: 1.4;
 }
 
-/* Header */
+/* HEADER */
 header {
-  padding: 22px 18px 10px;
+  padding: 22px 16px 8px;
   text-align: center;
 }
 
@@ -38,24 +36,16 @@ header h1 {
 
 header p {
   margin: 6px 0 0;
-  color: var(--muted);
   font-size: 13px;
+  color: var(--muted);
 }
 
-/* Navigation */
+/* NAV */
 nav {
-<button onclick="showDay('mon', event)" class="active">Mon</button>
-<button onclick="showDay('tue', event)">Tue</button>
-<button onclick="showDay('wed', event)">Wed</button>
-<button onclick="showDay('thu', event)">Thu</button>
-<button onclick="showDay('fri', event)">Fri</button>
-
-  
   display: flex;
   gap: 8px;
   overflow-x: auto;
   padding: 10px 12px;
-  -webkit-overflow-scrolling: touch;
 }
 
 nav button {
@@ -63,23 +53,21 @@ nav button {
   padding: 8px 14px;
   border-radius: 999px;
   border: 1px solid var(--border);
-  background: var(--card);
-  font-size: 13px;
+  background: white;
   cursor: pointer;
-  transition: all 0.2s ease;
+  font-size: 13px;
 }
 
 nav button.active {
   background: var(--text);
   color: white;
-  border-color: var(--text);
 }
 
-/* Day container */
+/* DAY */
 .day {
   display: none;
   max-width: 720px;
-  margin: 0 auto;
+  margin: auto;
   padding: 10px 14px 40px;
 }
 
@@ -87,55 +75,51 @@ nav button.active {
   display: block;
 }
 
-/* Section blocks */
+/* BLOCK = reusable section */
 .block {
-  margin-top: 18px;
+  margin-top: 22px;
 }
 
-.block h3 {
-  font-size: 15px;
-  margin-bottom: 10px;
+.block-title {
+  font-size: 14px;
   color: var(--muted);
+  margin-bottom: 10px;
   font-weight: 600;
-  letter-spacing: 0.2px;
 }
 
-/* Options */
-.options {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
+/* OPTION CARD */
 .option {
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: 16px;
-  padding: 14px 14px;
+  padding: 14px;
+  margin-bottom: 10px;
   box-shadow: var(--shadow);
   cursor: pointer;
-  transition: all 0.25s ease;
-  position: relative;
+  transition: 0.25s ease;
 }
 
-/* hover (desktop only) */
 .option:hover {
   transform: translateY(-1px);
 }
 
-/* selected */
 .option.active {
   border-color: var(--accent);
-  box-shadow: 0 10px 25px rgba(255, 90, 122, 0.12);
 }
 
-/* faded options */
 .option.dimmed {
   opacity: 0.35;
   transform: scale(0.98);
 }
 
-/* badges */
+/* small metadata line */
+.meta {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 6px;
+}
+
+/* badge */
 .badge {
   display: inline-block;
   margin-top: 8px;
@@ -143,64 +127,163 @@ nav button.active {
   padding: 3px 8px;
   border-radius: 999px;
   background: #f1f1f1;
-  color: #555;
 }
-</style>
-
-  
 </style>
 </head>
 
 <body>
 
-<div class="section">
+<header>
+  <h1>🌆 Chicago Trip</h1>
+  <p>July 6–10 • Choose-your-day itinerary</p>
+</header>
 
-  <h1>🌆 Chicago Trip — Monday</h1>
+<nav>
+  <button class="active" onclick="showDay('mon', event)">Mon</button>
+  <button onclick="showDay('tue', event)">Tue</button>
+  <button onclick="showDay('wed', event)">Wed</button>
+  <button onclick="showDay('thu', event)">Thu</button>
+  <button onclick="showDay('fri', event)">Fri</button>
+</nav>
 
+<!-- ===================== -->
+<!-- MONDAY COMPONENT -->
+<!-- ===================== -->
+<div id="mon" class="day active">
+  <h2>Monday — Arrival</h2>
+
+  <!-- BLOCK: MORNING -->
   <div class="block">
-    <h2>☕ Morning</h2>
+    <div class="block-title">☕ Morning</div>
 
-    <div class="options">
-      <div style="font-size:14px; font-weight:600;">
-  📚 Bookstore + Café
-</div>
-
-<div style="font-size:12px; color:#666; margin-top:4px;">
-  60–90 min • River North • low walking
-</div>
-      <div class="option" onclick="selectOption(this)">
-        Option A: Coffee + Bookstore in River North
-      </div>
-
-      <div class="option" onclick="selectOption(this)">
-        Option B: Slow walk + small neighborhood café
-      </div>
-
-      <div class="option" onclick="selectOption(this)">
-        Option C: Museum visit (Art Institute wing)
-      </div>
+    <div class="option" onclick="selectOption(this)">
+      <div><strong>Arrival + hotel check-in</strong></div>
+      <div class="meta">Travel day • low energy</div>
     </div>
   </div>
 
+  <!-- BLOCK: AFTERNOON -->
+  <div class="block">
+    <div class="block-title">☀️ Afternoon</div>
+
+    <div class="option" onclick="selectOption(this)">
+      <div><strong>Coffee + River North walk</strong></div>
+      <div class="meta">Easy pacing • café stop</div>
+      <span class="badge">low walking</span>
+    </div>
+
+    <div class="option" onclick="selectOption(this)">
+      <div><strong>Bookstore + café</strong></div>
+      <div class="meta">Indoors • browsing</div>
+      <span class="badge">books</span>
+    </div>
+
+    <div class="option" onclick="selectOption(this)">
+      <div><strong>Park + rest break</strong></div>
+      <div class="meta">Seating available</div>
+    </div>
+  </div>
+
+  <!-- BLOCK: EVENING -->
+  <div class="block">
+    <div class="block-title">🌙 Evening</div>
+
+    <div class="option" onclick="selectOption(this)">
+      <div><strong>Casual dinner nearby</strong></div>
+    </div>
+
+    <div class="option" onclick="selectOption(this)">
+      <div><strong>Deep dish pizza</strong></div>
+    </div>
+
+    <div class="option" onclick="selectOption(this)">
+      <div><strong>Early rest night</strong></div>
+      <div class="meta">Recover + settle in</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== -->
+<!-- TUESDAY -->
+<!-- ===================== -->
+<div id="tue" class="day">
+  <h2>Tuesday — Books & Neighborhoods</h2>
+
+  <div class="block">
+    <div class="block-title">☕ Morning</div>
+
+    <div class="option" onclick="selectOption(this)">
+      <div><strong>Café slow start</strong></div>
+    </div>
+
+    <div class="option" onclick="selectOption(this)">
+      <div><strong>Bakery breakfast</strong></div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-title">📚 Afternoon</div>
+
+    <div class="option" onclick="selectOption(this)">
+      <div><strong>Bookstores loop</strong></div>
+      <div class="meta">Café breaks built in</div>
+    </div>
+
+    <div class="option" onclick="selectOption(this)">
+      <div><strong>Small museum visit</strong></div>
+    </div>
+
+    <div class="option" onclick="selectOption(this)">
+      <div><strong>Park + rest afternoon</strong></div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-title">🌙 Evening</div>
+
+    <div class="option" onclick="selectOption(this)">
+      <div><strong>Dinner reservation</strong></div>
+    </div>
+
+    <div class="option" onclick="selectOption(this)">
+      <div><strong>Dessert + walk</strong></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== -->
+<!-- WED–FRI (STRUCTURE READY) -->
+<!-- ===================== -->
+<div id="wed" class="day">
+  <h2>Wednesday — Reservation Day</h2>
+  <div class="block">
+    <div class="block-title">Midday</div>
+    <div class="option active">
+      <div><strong>12pm reservation (fixed)</strong></div>
+    </div>
+  </div>
+</div>
+
+<div id="thu" class="day">
+  <h2>Thursday — Flexible Day</h2>
+  <div class="block">
+    <div class="block-title">More options coming</div>
+  </div>
+</div>
+
+<div id="fri" class="day">
+  <h2>Friday — Departure</h2>
+  <div class="block">
+    <div class="option">
+      <div><strong>Coffee + packing</strong></div>
+    </div>
+    <div class="option">
+      <div><strong>Travel home</strong></div>
+    </div>
+  </div>
 </div>
 
 <script>
-<script>
-function selectOption(el) {
-  const container = el.parentElement;
-  const options = container.querySelectorAll(".option");
-
-  options.forEach(opt => {
-    opt.classList.remove("active", "dimmed");
-  });
-
-  el.classList.add("active");
-
-  options.forEach(opt => {
-    if (opt !== el) opt.classList.add("dimmed");
-  });
-}
-
 function showDay(id, event) {
   document.querySelectorAll(".day").forEach(d => d.classList.remove("active"));
   document.getElementById(id).classList.add("active");
@@ -208,7 +291,19 @@ function showDay(id, event) {
   document.querySelectorAll("nav button").forEach(b => b.classList.remove("active"));
   event.target.classList.add("active");
 }
-</script>
+
+function selectOption(el) {
+  const block = el.parentElement;
+  const options = block.querySelectorAll(".option");
+
+  options.forEach(o => o.classList.remove("active", "dimmed"));
+
+  el.classList.add("active");
+
+  options.forEach(o => {
+    if (o !== el) o.classList.add("dimmed");
+  });
+}
 </script>
 
 </body>
