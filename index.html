@@ -6,27 +6,94 @@
 <title>Chicago Trip</title>
 
 <style>
+<style>
+:root {
+  --bg: #f7f5f2;
+  --card: #ffffff;
+  --text: #1f1f1f;
+  --muted: #6b6b6b;
+  --accent: #ff5a7a;
+  --border: #e7e2dc;
+  --shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+
 body {
-  font-family: Arial, sans-serif;
   margin: 0;
-  background: #faf7f2;
-  color: #222;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.4;
 }
 
-.section {
-  padding: 20px;
-  max-width: 700px;
-  margin: auto;
+/* Header */
+header {
+  padding: 22px 18px 10px;
+  text-align: center;
 }
 
+header h1 {
+  font-size: 22px;
+  margin: 0;
+}
+
+header p {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* Navigation */
+nav {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 10px 12px;
+  -webkit-overflow-scrolling: touch;
+}
+
+nav button {
+  flex: 0 0 auto;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+nav button.active {
+  background: var(--text);
+  color: white;
+  border-color: var(--text);
+}
+
+/* Day container */
+.day {
+  display: none;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 10px 14px 40px;
+}
+
+.day.active {
+  display: block;
+}
+
+/* Section blocks */
 .block {
-  margin-bottom: 30px;
+  margin-top: 18px;
 }
 
-.block h2 {
+.block h3 {
+  font-size: 15px;
   margin-bottom: 10px;
+  color: var(--muted);
+  font-weight: 600;
+  letter-spacing: 0.2px;
 }
 
+/* Options */
 .options {
   display: flex;
   flex-direction: column;
@@ -34,26 +101,46 @@ body {
 }
 
 .option {
-  padding: 14px;
-  border-radius: 12px;
-  border: 2px solid #ddd;
-  background: white;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 14px 14px;
+  box-shadow: var(--shadow);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.25s ease;
+  position: relative;
 }
 
+/* hover (desktop only) */
 .option:hover {
-  border-color: #999;
+  transform: translateY(-1px);
 }
 
+/* selected */
 .option.active {
-  border-color: #ff6b81;
-  transform: scale(1.02);
+  border-color: var(--accent);
+  box-shadow: 0 10px 25px rgba(255, 90, 122, 0.12);
 }
 
+/* faded options */
 .option.dimmed {
   opacity: 0.35;
+  transform: scale(0.98);
 }
+
+/* badges */
+.badge {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: #f1f1f1;
+  color: #555;
+}
+</style>
+
+  
 </style>
 </head>
 
