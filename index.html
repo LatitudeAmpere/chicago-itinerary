@@ -44,6 +44,13 @@ header p {
 
 /* Navigation */
 nav {
+<button onclick="showDay('mon', event)" class="active">Mon</button>
+<button onclick="showDay('tue', event)">Tue</button>
+<button onclick="showDay('wed', event)">Wed</button>
+<button onclick="showDay('thu', event)">Thu</button>
+<button onclick="showDay('fri', event)">Fri</button>
+
+  
   display: flex;
   gap: 8px;
   overflow-x: auto;
@@ -154,6 +161,13 @@ nav button.active {
     <h2>☕ Morning</h2>
 
     <div class="options">
+      <div style="font-size:14px; font-weight:600;">
+  📚 Bookstore + Café
+</div>
+
+<div style="font-size:12px; color:#666; margin-top:4px;">
+  60–90 min • River North • low walking
+</div>
       <div class="option" onclick="selectOption(this)">
         Option A: Coffee + Bookstore in River North
       </div>
@@ -171,6 +185,7 @@ nav button.active {
 </div>
 
 <script>
+<script>
 function selectOption(el) {
   const container = el.parentElement;
   const options = container.querySelectorAll(".option");
@@ -182,11 +197,18 @@ function selectOption(el) {
   el.classList.add("active");
 
   options.forEach(opt => {
-    if (opt !== el) {
-      opt.classList.add("dimmed");
-    }
+    if (opt !== el) opt.classList.add("dimmed");
   });
 }
+
+function showDay(id, event) {
+  document.querySelectorAll(".day").forEach(d => d.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+
+  document.querySelectorAll("nav button").forEach(b => b.classList.remove("active"));
+  event.target.classList.add("active");
+}
+</script>
 </script>
 
 </body>
